@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fibonacci Series Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f8;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      width: 350px;
+      text-align: center;
+    }
+    input {
+      width: 80%;
+      padding: 8px;
+      margin-top: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      border: none;
+      background-color: #007bff;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    #result {
+      margin-top: 20px;
+      font-size: 16px;
+      color: #333;
+      word-wrap: break-word;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Fibonacci Series Generator</h2>
+    <input type="number" id="steps" placeholder="Enter number of steps" min="1">
+    <button onclick="printFibonacci()">Print</button>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function printFibonacci() {
+      const steps = parseInt(document.getElementById('steps').value);
+      const resultDiv = document.getElementById('result');
+      
+      if (isNaN(steps) || steps <= 0) {
+        resultDiv.innerHTML = "⚠️ Please enter a valid positive number.";
+        return;
+      }
+
+      let fibSeries = [];
+      let n1 = 0, n2 = 1;
+
+      for (let i = 0; i < steps; i++) {
+        fibSeries.push(n1);
+        const next = n1 + n2;
+        n1 = n2;
+        n2 = next;
+      }
+
+      resultDiv.innerHTML = `<strong>Fibonacci Series:</strong> ${fibSeries.join(', ')}`;
+    }
+  </script>
+
+</body>
+</html>
